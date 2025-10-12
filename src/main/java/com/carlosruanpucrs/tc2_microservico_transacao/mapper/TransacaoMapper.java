@@ -1,6 +1,7 @@
 package com.carlosruanpucrs.tc2_microservico_transacao.mapper;
 
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.ComprovanteResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransacaoResponse;
 import com.carlosruanpucrs.tc2_microservico_transacao.enums.TipoMovimentacaoEnum;
 import com.carlosruanpucrs.tc2_microservico_transacao.model.entity.TransacaoEntity;
 
@@ -25,6 +26,12 @@ public class TransacaoMapper {
     public static ComprovanteResponse mapToTransferenciaResponse(String comprovante) {
         return ComprovanteResponse.builder()
                 .comprovante(comprovante)
+                .build();
+    }
+
+    public static TransacaoResponse mapToTransacaoResponse(TransacaoEntity transacaoEntity) {
+        return TransacaoResponse.builder()
+
                 .build();
     }
 }
