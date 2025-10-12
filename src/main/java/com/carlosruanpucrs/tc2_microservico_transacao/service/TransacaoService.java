@@ -2,7 +2,7 @@ package com.carlosruanpucrs.tc2_microservico_transacao.service;
 
 import com.carlosruanpucrs.tc2_microservico_transacao.api.request.TransferenciaRequest;
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.ComprovanteResponse;
-import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransacaoResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransferenciaResponse;
 import com.carlosruanpucrs.tc2_microservico_transacao.client.ContaClient;
 import com.carlosruanpucrs.tc2_microservico_transacao.enums.OperacaoTransacaoEnum;
 import com.carlosruanpucrs.tc2_microservico_transacao.mapper.TransacaoMapper;
@@ -40,7 +40,7 @@ public class TransacaoService {
         return TransacaoMapper.mapToTransferenciaResponse(transacao.getComprovante());
     }
 
-    public List<TransacaoResponse> listarTransferenciasPorConta(Integer numeroConta) {
+    public List<TransferenciaResponse> listarTransferenciasPorConta(Integer numeroConta) {
         return transacaoRepository.findByContaOrigemOrContaDestino(numeroConta, numeroConta)
                 .stream()
                 .map(TransacaoMapper::mapToTransacaoResponse)

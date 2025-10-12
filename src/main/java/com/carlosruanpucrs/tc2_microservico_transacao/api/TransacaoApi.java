@@ -2,7 +2,7 @@ package com.carlosruanpucrs.tc2_microservico_transacao.api;
 
 import com.carlosruanpucrs.tc2_microservico_transacao.api.request.TransferenciaRequest;
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.ComprovanteResponse;
-import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransacaoResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransferenciaResponse;
 import com.carlosruanpucrs.tc2_microservico_transacao.service.TransacaoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class TransacaoApi {
     }
 
     @GetMapping("/{numeroConta}")
-    public ResponseEntity<List<TransacaoResponse>> listarTransferenciasPorConta(@PathVariable Integer numeroConta) {
+    public ResponseEntity<List<TransferenciaResponse>> listarTransferenciasPorConta(@PathVariable Integer numeroConta) {
         return ResponseEntity.ok(transacaoService.listarTransferenciasPorConta(numeroConta));
     }
 }
