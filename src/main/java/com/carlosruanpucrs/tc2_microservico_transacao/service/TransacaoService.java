@@ -2,6 +2,7 @@ package com.carlosruanpucrs.tc2_microservico_transacao.service;
 
 import com.carlosruanpucrs.tc2_microservico_transacao.api.request.TransferenciaRequest;
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.ComprovanteResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransacaoResponse;
 import com.carlosruanpucrs.tc2_microservico_transacao.client.ContaClient;
 import com.carlosruanpucrs.tc2_microservico_transacao.enums.OperacaoTransacaoEnum;
 import com.carlosruanpucrs.tc2_microservico_transacao.mapper.TransacaoMapper;
@@ -9,6 +10,8 @@ import com.carlosruanpucrs.tc2_microservico_transacao.repository.TransacaoReposi
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.carlosruanpucrs.tc2_microservico_transacao.enums.TipoMovimentacaoEnum.TRANSFERENCIA_INTERNA;
 
@@ -37,4 +40,10 @@ public class TransacaoService {
         return TransacaoMapper.mapToTransferenciaResponse(transacao.getComprovante());
     }
 
+    public List<TransacaoResponse> listarTransferenciasPorConta(Integer numeroConta) {
+        return transacaoRepository.findByContaOrigemOrContaDestino(numeroConta, numeroConta)
+                .stream()
+                .map(TransacaoMapper::mapToTransacaoResponse)
+                .toList();
+    }
 }
