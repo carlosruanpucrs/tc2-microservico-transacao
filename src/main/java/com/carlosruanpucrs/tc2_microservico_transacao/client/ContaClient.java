@@ -23,8 +23,11 @@ public interface ContaClient {
     @GetMapping("/{numeroConta}/saldo")
     ResponseEntity<ContaSaldoResponse> saldoConta(@PathVariable Integer numeroConta);
 
-    @PatchMapping("/{numeroConta}/saldo/atualizacao")
-    ResponseEntity<Void> atualizarSaldo(@PathVariable Integer numeroConta,
-                                        @RequestParam("valor") BigDecimal valor,
-                                        @RequestParam("operacaoTransacao") OperacaoTransacaoEnum operacaoTransacao);
+    @PatchMapping("/{numeroConta}/credito")
+    ResponseEntity<Void> creditar(@PathVariable Integer numeroConta,
+                                  @RequestParam("valor") BigDecimal valor);
+
+    @PatchMapping("/{numeroConta}/debito")
+    ResponseEntity<Void> debitar(@PathVariable Integer numeroConta,
+                                  @RequestParam("valor") BigDecimal valor);
 }

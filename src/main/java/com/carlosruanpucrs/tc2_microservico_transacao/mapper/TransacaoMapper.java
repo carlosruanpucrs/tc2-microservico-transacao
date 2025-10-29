@@ -1,7 +1,9 @@
 package com.carlosruanpucrs.tc2_microservico_transacao.mapper;
 
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.ComprovanteResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.api.response.PagamentoInssResponse;
 import com.carlosruanpucrs.tc2_microservico_transacao.api.response.TransferenciaResponse;
+import com.carlosruanpucrs.tc2_microservico_transacao.enums.SituacaoPagamentoInssEnum;
 import com.carlosruanpucrs.tc2_microservico_transacao.enums.TipoMovimentacaoEnum;
 import com.carlosruanpucrs.tc2_microservico_transacao.model.entity.TransacaoEntity;
 
@@ -32,6 +34,14 @@ public class TransacaoMapper {
     public static TransferenciaResponse mapToTransacaoResponse(TransacaoEntity transacaoEntity) {
         return TransferenciaResponse.builder()
 
+                .build();
+    }
+
+    public static PagamentoInssResponse mapToPagamentoInssResponse(String idInss, String comprovante, SituacaoPagamentoInssEnum resultado) {
+        return PagamentoInssResponse.builder()
+                .idInss(idInss)
+                .comprovante(comprovante)
+                .resultado(resultado)
                 .build();
     }
 }
