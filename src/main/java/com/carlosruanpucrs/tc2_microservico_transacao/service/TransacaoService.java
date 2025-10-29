@@ -28,10 +28,11 @@ public class TransacaoService {
     private final TransacaoRepository transacaoRepository;
 
     public ComprovanteResponse transferir(TransferenciaRequest request) {
+        var saldoContaOrigem = contaClient.saldoConta(request.getContaOrigem()).getBody();
         var contaOrigem = contaClient.contaPorNumero(request.getContaOrigem()).getBody();
         var contaDestino = contaClient.contaPorNumero(request.getContaDestino()).getBody();
 
-        validationService.validarSaldoConta(request.getValor(), contaOrigem);
+        validationService.validarSaldoConta(request.getValor(), saldoContaOrigem.getSaldo(), contaOrigem.getNumeroConta());
         validationService.validarSituacaoContaBloqueada(contaOrigem);
 
         contaClient.debitar(contaOrigem.getNumeroConta(), request.getValor());
