@@ -14,9 +14,9 @@ import java.util.Objects;
 @Service
 public class ValidationService {
 
-    public void validarSaldoConta(BigDecimal valor, ContaResponse contaOrigem) {
-        if (contaOrigem.getSaldo().compareTo(valor) < 0) {
-            throw new SaldoInsuficienteException(contaOrigem.getNumeroConta());
+    public void validarSaldoConta(BigDecimal valor, BigDecimal saldo, Integer conta) {
+        if (saldo.compareTo(valor) < 0) {
+            throw new SaldoInsuficienteException(conta);
         }
     }
 
